@@ -34,4 +34,6 @@ public interface AutoConstructorMapper {
 
   @Select("SELECT * FROM extensive_subject")
   List<ExtensiveSubject> getExtensiveSubject();
+
+  PrimitiveSubject findById(final int id);
 }

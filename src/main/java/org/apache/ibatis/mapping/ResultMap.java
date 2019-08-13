@@ -36,8 +36,9 @@ import org.apache.ibatis.session.Configuration;
  */
 public class ResultMap {
   private Configuration configuration;
-
+  // 完整的id，namespace+id+类型，例如：org.apache.ibatis.autoconstructor.AutoConstructorMapper.findById-Inline
   private String id;
+  // 返回值类型
   private Class<?> type;
   private List<ResultMapping> resultMappings;
   private List<ResultMapping> idResultMappings;

@@ -23,7 +23,7 @@ import org.apache.ibatis.session.Configuration;
 /**
  * @author Clinton Begin
  */
-public class DynamicSqlSource implements SqlSource {
+public class    DynamicSqlSource implements SqlSource {
 
   private final Configuration configuration;
   private final SqlNode rootSqlNode;

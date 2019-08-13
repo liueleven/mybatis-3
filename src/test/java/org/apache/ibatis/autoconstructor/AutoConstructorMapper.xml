@@ -21,4 +21,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.apache.ibatis.autoconstructor.AutoConstructorMapper">
+
+    <parameterMap id="testParameterMap" type="map">
+
+    </parameterMap>
+
+    <resultMap id="testResultMap" type="map">
+
+    </resultMap>
+
+    <sql id="all_filed">
+
+    </sql>
+
+    <select id="findById" parameterType="int" resultType="org.apache.ibatis.autoconstructor.PrimitiveSubject">
+        SELECT * FROM subject WHERE id = #{id}
+    </select>
 </mapper>

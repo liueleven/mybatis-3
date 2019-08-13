@@ -39,7 +39,7 @@ class LazyPropertiesTest {
 
   @BeforeEach
   void setUp() throws Exception {
-    // create an SqlSessionFactory
+    // create an MySqlSessionFactory
     try (Reader reader = Resources
         .getResourceAsReader("org/apache/ibatis/submitted/lazy_properties/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

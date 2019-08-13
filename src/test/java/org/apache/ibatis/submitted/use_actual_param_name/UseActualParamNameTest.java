@@ -35,7 +35,7 @@ class UseActualParamNameTest {
 
   @BeforeAll
   static void setUp() throws Exception {
-    // create an SqlSessionFactory
+    // create an MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader(
         "org/apache/ibatis/submitted/use_actual_param_name/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);

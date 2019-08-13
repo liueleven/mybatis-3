@@ -34,7 +34,7 @@ class UUIDTest {
 
   @BeforeAll
   static void setUp() throws Exception {
-    // create an SqlSessionFactory
+    // create an MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/uuid_test/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }

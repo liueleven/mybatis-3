@@ -40,13 +40,23 @@ public class MapperRegistry {
     this.config = config;
   }
 
+  /**
+   *
+   * @param type 类名，例如：org.apache.ibatis.autoconstructor.AutoConstructorMapper
+   * @param sqlSession
+   * @param <T>
+   * @return 返回type的一个对象
+   */
   @SuppressWarnings("unchecked")
   public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
+    // knownMappers 是个Map，key是类名，value是MapperProxyFactory代理工厂
+    // 在解析配置文件的时候会添加进去的
     final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
     if (mapperProxyFactory == null) {
       throw new BindingException("Type " + type + " is not known to the MapperRegistry.");
     }
     try {
+      // 通过代理工厂new一个对象
       return mapperProxyFactory.newInstance(sqlSession);
     } catch (Exception e) {
       throw new BindingException("Error getting mapper instance. Cause: " + e, e);

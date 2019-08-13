@@ -42,6 +42,14 @@ public class MapperProxy<T> implements InvocationHandler, Serializable {
     this.methodCache = methodCache;
   }
 
+  /**
+   *
+   * @param proxy
+   * @param method 执行的方法，例如：findById(int)
+   * @param args 该方法的入参，例如：1
+   * @return
+   * @throws Throwable
+   */
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
     try {

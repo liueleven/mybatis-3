@@ -252,7 +252,7 @@ class XmlConfigBuilderTest {
 
       when(builder).parse();
       then(caughtException()).isInstanceOf(BuilderException.class)
-              .hasMessage("Each XMLConfigBuilder can only be used once.");
+              .hasMessage("Each MyXMLConfigBuilder can only be used once.");
     }
   }
 

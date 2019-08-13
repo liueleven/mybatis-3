@@ -31,17 +31,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AutoConstructorTest {
+class  AutoConstructorTest {
   private static SqlSessionFactory sqlSessionFactory;
 
   @BeforeAll
   static void setUp() throws Exception {
-    // create a SqlSessionFactory
+    // create a MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader("org/apache/ibatis/autoconstructor/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }
 
-    // populate in-memory database
+    /**
+     * populate in-memory database
+     * 执行sql脚本，填充数据到内存数据库
+     */
     BaseDataTest.runScript(sqlSessionFactory.getConfiguration().getEnvironment().getDataSource(),
         "org/apache/ibatis/autoconstructor/CreateDB.sql");
   }
@@ -50,7 +53,7 @@ class AutoConstructorTest {
   void fullyPopulatedSubject() {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       final AutoConstructorMapper mapper = sqlSession.getMapper(AutoConstructorMapper.class);
-      final Object subject = mapper.getSubject(1);
+      final Object subject = mapper.findById(1);
       assertNotNull(subject);
     }
   }

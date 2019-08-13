@@ -48,6 +48,9 @@ public class XPathParser {
   private final Document document;
   private boolean validation;
   private EntityResolver entityResolver;
+  /**
+   * xml中的动态变量，例如：<property name="username" value="${username}"/>
+   */
   private Properties variables;
   private XPath xpath;
 
@@ -116,6 +119,13 @@ public class XPathParser {
     this.document = createDocument(new InputSource(new StringReader(xml)));
   }
 
+  /**
+   * 解析mybatis-config.xml和 *Mapper.xml
+   * @param reader
+   * @param validation
+   * @param variables
+   * @param entityResolver
+   */
   public XPathParser(Reader reader, boolean validation, Properties variables, EntityResolver entityResolver) {
     commonConstructor(validation, variables, entityResolver);
     this.document = createDocument(new InputSource(reader));
@@ -218,6 +228,13 @@ public class XPathParser {
     return new XNode(this, node, variables);
   }
 
+  /**
+   * 获得指定元素或节点的值，eval*()都会调用这个方法
+   * @param expression
+   * @param root 指定节点
+   * @param returnType 返回类型
+   * @return 返回一个值
+   */
   private Object evaluate(String expression, Object root, QName returnType) {
     try {
       return xpath.evaluate(expression, root, returnType);
@@ -226,6 +243,11 @@ public class XPathParser {
     }
   }
 
+  /**
+   * 创建Document对象
+   * @param inputSource
+   * @return
+   */
   private Document createDocument(InputSource inputSource) {
     // important: this must only be called AFTER common constructor
     try {

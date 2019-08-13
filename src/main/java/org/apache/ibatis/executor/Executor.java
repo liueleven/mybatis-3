@@ -28,7 +28,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.transaction.Transaction;
 
 /**
- * @author Clinton Begin
+ * 真正执行sql，达到解耦的目的
  */
 public interface Executor {
 

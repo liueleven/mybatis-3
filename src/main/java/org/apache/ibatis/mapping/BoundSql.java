@@ -31,13 +31,19 @@ import org.apache.ibatis.session.Configuration;
  * <p>
  * Can also have additional parameters that are created by the dynamic language (for loops, bind...).
  *
+ * 获取真正的sql
  * @author Clinton Begin
  */
 public class BoundSql {
 
+  /**
+   * 具体的sql，例如select * from user where id = ?
+   */
   private final String sql;
+  // 参数类型
   private final List<ParameterMapping> parameterMappings;
   private final Object parameterObject;
+  // 其他参数
   private final Map<String, Object> additionalParameters;
   private final MetaObject metaParameters;
 

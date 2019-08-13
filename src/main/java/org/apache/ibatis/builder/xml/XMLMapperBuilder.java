@@ -91,6 +91,7 @@ public class XMLMapperBuilder extends BaseBuilder {
 
   public void parse() {
     if (!configuration.isResourceLoaded(resource)) {
+      // mapper 文件处理
       configurationElement(parser.evalNode("/mapper"));
       configuration.addLoadedResource(resource);
       bindMapperForNamespace();
@@ -114,9 +115,13 @@ public class XMLMapperBuilder extends BaseBuilder {
       builderAssistant.setCurrentNamespace(namespace);
       cacheRefElement(context.evalNode("cache-ref"));
       cacheElement(context.evalNode("cache"));
+      // 解析*mapper.xml中的<parameterMap> 标签
       parameterMapElement(context.evalNodes("/mapper/parameterMap"));
+      // 解析*mapper.xml中的<resultMap> 标签
       resultMapElements(context.evalNodes("/mapper/resultMap"));
+      // 解析*mapper.xml中的<sql> 标签
       sqlElement(context.evalNodes("/mapper/sql"));
+      //
       buildStatementFromContext(context.evalNodes("select|insert|update|delete"));
     } catch (Exception e) {
       throw new BuilderException("Error parsing Mapper XML. The XML location is '" + resource + "'. Cause: " + e, e);
@@ -418,16 +423,22 @@ public class XMLMapperBuilder extends BaseBuilder {
     }
   }
 
+  /**
+   * 绑定mapper，一个*Mapper文件只能加载一次
+   */
   private void bindMapperForNamespace() {
     String namespace = builderAssistant.getCurrentNamespace();
     if (namespace != null) {
       Class<?> boundType = null;
       try {
+        // 根据完整的命名空间得到对应的完整类名，例如:
+        // org.apache.ibatis.autoconstructor.AutoConstructorMapper -> org.apache.ibatis.autoconstructor.AutoConstructorMapper
         boundType = Resources.classForName(namespace);
       } catch (ClassNotFoundException e) {
         //ignore, bound type is not required
       }
       if (boundType != null) {
+        // 判断这个Mapper文件是否已经绑定
         if (!configuration.hasMapper(boundType)) {
           // Spring may not know the real resource name so we set a flag
           // to prevent loading again this resource from the mapper interface

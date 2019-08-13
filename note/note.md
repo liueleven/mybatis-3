@@ -1,0 +1,31 @@
+Mybatis每一种操作都抽象出一个类，单一职责的体现
+大致执行过程分为三步，一步是解析配置信息，二是执行sql，三是解析结果集
+建造者模式：当要构建一个复杂对象时，就可以使用建造者模式，例如：SqlSessionFactoryBuilder构建 SqlSessionFactory;XMLConfigBuilder
+模板方法：BaseExecutor
+简单工厂：SqlSessionFactory 根据不同的传参创建 SqlSession
+单例模式：ErrorContext，但是它的单例只对应线程来说的
+代理模式：MapperRegistry
+标签中的内容会被XMLConfigBuilder解析成 Configuration 对象
+Configuration会传给SqlSessionFactory工厂生成对应的SqlSession对象
+XMLMapperBuilder是用来解析*Mapper.xml文件的
+SqlSource 获取的是一条sql信息
+Executor 是用来执行具体sql的
+
+
+
+封装jdbc的操作
+
+单一职责
+开闭原则
+里斯替换
+依赖倒转
+接口隔离
+合成复用
+迪米特法则
+
+
+StatementHandler 封装了JDBC的操作
+ParameterHandler 参数处理
+ResultHandler 结果集处理
+TypeHandler JDBC类似到Java类型之间的转换
+BoundSql 获取一条sql的信息，参数结果集等

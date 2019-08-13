@@ -42,7 +42,7 @@ class DmlMapperReturnTypesTest {
 
   @BeforeAll
   static void setUp() throws Exception {
-    // create a SqlSessionFactory
+    // create a MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader(XML)) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }

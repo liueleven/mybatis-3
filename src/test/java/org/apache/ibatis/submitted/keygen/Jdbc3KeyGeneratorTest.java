@@ -47,7 +47,7 @@ class Jdbc3KeyGeneratorTest {
 
   @BeforeAll
   static void setUp() throws Exception {
-    // create an SqlSessionFactory
+    // create an MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/keygen/MapperConfig.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }

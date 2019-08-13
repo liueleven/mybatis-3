@@ -35,7 +35,7 @@ class BlockingCacheTest {
 
   @BeforeEach
   void setUp() throws Exception {
-    // create a SqlSessionFactory
+    // create a MySqlSessionFactory
     try (Reader reader = Resources.getResourceAsReader("org/apache/ibatis/submitted/blocking_cache/mybatis-config.xml")) {
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     }

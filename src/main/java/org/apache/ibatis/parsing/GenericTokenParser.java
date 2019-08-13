@@ -16,12 +16,23 @@
 package org.apache.ibatis.parsing;
 
 /**
+ * 通用符号解析器
  * @author Clinton Begin
  */
 public class GenericTokenParser {
 
+  /**
+   * 开字符，例如：#{
+   */
   private final String openToken;
+
+  /**
+   * 关字符，例如：}
+   */
   private final String closeToken;
+  /**
+   * 符号处理类型
+   */
   private final TokenHandler handler;
 
   public GenericTokenParser(String openToken, String closeToken, TokenHandler handler) {
@@ -30,6 +41,11 @@ public class GenericTokenParser {
     this.handler = handler;
   }
 
+  /**
+   * 解析标签中的文本内容
+   * @param text
+   * @return
+   */
   public String parse(String text) {
     if (text == null || text.isEmpty()) {
       return "";

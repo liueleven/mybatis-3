@@ -27,6 +27,7 @@ import java.util.Properties;
 
 /**
  * A class to simplify access to resources through the classloader.
+ * 通过类加载器获取资源
  *
  * @author Clinton Begin
  */
@@ -90,6 +91,7 @@ public class Resources {
   }
 
   /**
+   * 获取一个流对象
    * Returns a resource on the classpath as a Stream object
    *
    * @param resource The resource to find
@@ -148,6 +150,7 @@ public class Resources {
   }
 
   /**
+   * 获取资源并返回一个流对象
    * Returns a resource on the classpath as a Reader object
    *
    * @param resource The resource to find
